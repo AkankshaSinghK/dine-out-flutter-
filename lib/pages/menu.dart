@@ -1,21 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dine_out/model/store_item.dart';
-import 'package:dine_out/pages/beveragescreen.dart';
-import 'package:dine_out/pages/dessertscreen.dart';
-import 'package:dine_out/pages/food_screen.dart';
-import 'package:dine_out/pages/store/add_item.dart';
-import 'package:dine_out/utils/helper.dart';
+import '../model/store_item.dart';
+import 'beveragescreen.dart';
+import 'dessertscreen.dart';
+import 'food_screen.dart';
+import 'store/add_item.dart';
+import '../utils/helper.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 import '../utils/colors.dart';
-import 'add_food_screen.dart';
 
 class MenuScreen extends StatefulWidget {
-  MenuScreen({super.key});
+  const MenuScreen({super.key});
 
   @override
   State<MenuScreen> createState() => _MenuScreenState();
@@ -119,7 +115,7 @@ class _MenuScreenState extends State<MenuScreen> {
                               },
                               child: MenuCard(
                                 imageShape: ClipOval(
-                                  child: Container(
+                                  child: SizedBox(
                                       height: 60,
                                       width: 60,
                                       child: Image.asset(
@@ -144,7 +140,7 @@ class _MenuScreenState extends State<MenuScreen> {
                               },
                               child: MenuCard(
                                 imageShape: ClipOval(
-                                  child: Container(
+                                  child: SizedBox(
                                       height: 60,
                                       width: 60,
                                       child: Image.asset(
@@ -169,7 +165,7 @@ class _MenuScreenState extends State<MenuScreen> {
                               },
                               child: MenuCard(
                                 imageShape: ClipOval(
-                                  child: Container(
+                                  child: SizedBox(
                                     height: 60,
                                     width: 60,
                                     child: Image.asset(

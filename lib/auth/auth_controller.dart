@@ -1,13 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:dine_out/pages/login.dart';
 
 
 class AuthController extends GetxController {
 
   static AuthController instance = Get.find();
-  late Rx<User?> _user;
   // email,password,name etc in user
   FirebaseAuth auth = FirebaseAuth.instance;
 
@@ -23,13 +21,13 @@ class AuthController extends GetxController {
       Get.snackbar("About user", "User message",
           backgroundColor: Colors.redAccent,
           snackPosition: SnackPosition.BOTTOM,
-          titleText: Text(
+          titleText: const Text(
             "Account creation failed",
             style: TextStyle(color: Colors.white),
           ),
           messageText: Text(
             e.toString(),
-            style: TextStyle(color: Colors.white),
+            style: const TextStyle(color: Colors.white),
           ));
           print("Failed signup");
     }
@@ -41,7 +39,7 @@ class AuthController extends GetxController {
       Get.snackbar("Logging in", "Succesful login",
       backgroundColor: Colors.green,
       snackPosition: SnackPosition.BOTTOM,
-          titleText: Text(
+          titleText: const Text(
             "Success",
             style: TextStyle(color: Colors.white),
           ),);
@@ -50,13 +48,13 @@ class AuthController extends GetxController {
       Get.snackbar("About login", "Login message",
           backgroundColor: Colors.redAccent,
           snackPosition: SnackPosition.BOTTOM,
-          titleText: Text(
+          titleText: const Text(
             "Log in failed",
             style: TextStyle(color: Colors.white),
           ),
           messageText: Text(
             e.toString(),
-            style: TextStyle(color: Colors.white),
+            style: const TextStyle(color: Colors.white),
           ));
           print("login failed");
     }

@@ -3,7 +3,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dine_out/model/store_item.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 
@@ -30,7 +29,7 @@ class _AddMenuItemState extends State<AddMenuItem> {
   final FocusNode _priceFocusNode = FocusNode();
 
   String errorMessage = "";
-  bool _validate = false;
+  final bool _validate = false;
 
   final _firestore = FirebaseFirestore.instance;
   final _storage = FirebaseStorage.instance;

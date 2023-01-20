@@ -23,7 +23,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
       showDialog(
         context: context,
          builder: (context){
-          return AlertDialog(
+          return const AlertDialog(
             content: Text('Password reset link send! Check your email.'
             ),
           );
@@ -50,13 +50,13 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal:23.0),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal:23.0),
             child: Text('Enter your email and we will send you reset password link',
             textAlign:TextAlign.center,
             style:TextStyle(fontSize:20),),
           ),
-          SizedBox(height: 20,),
+          const SizedBox(height: 20,),
            Padding(
             padding: const EdgeInsets.symmetric(horizontal:25.0),
             
@@ -66,15 +66,15 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                 decoration:InputDecoration(
                   enabledBorder: OutlineInputBorder(
                     borderRadius:BorderRadius.circular(12),
-                    borderSide: BorderSide(color: Colors.white),
+                    borderSide: const BorderSide(color: Colors.white),
                      ),
                      focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide(color: Colors.deepPurple),
+                      borderSide: const BorderSide(color: Colors.deepPurple),
                        ),
                   
                   hintText: "Email",
-                   prefixIcon: Icon(
+                   prefixIcon: const Icon(
                               Icons.email_outlined,color:Color.fromARGB(255, 243, 172, 101)                              
                             ),
                   fillColor: Colors.grey[200],
@@ -82,10 +82,10 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                 )
               )
             ),
-            SizedBox(height: 10,),
+            const SizedBox(height: 10,),
             MaterialButton(onPressed: passwordReset,
-            child:Text('Reset Password') ,
             color: Colors.deepPurple[200],
+            child:const Text('Reset Password') ,
             ),
         ],
       ),

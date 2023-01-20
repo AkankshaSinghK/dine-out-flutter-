@@ -1,6 +1,5 @@
 
-import 'package:dine_out/auth/auth_page.dart';
-import 'package:dine_out/pages/login.dart';
+import '../../auth/auth_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -78,7 +77,7 @@ class IntroScreen extends StatelessWidget {
             ); 
                   }*/
               ),
-              onTap:() =>  Get.to(() => AuthPage()),
+              onTap:() =>  Get.to(() => const AuthPage()),
             ),
 
             const Spacer(),

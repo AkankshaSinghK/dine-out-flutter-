@@ -1,16 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dine_out/controllers/store_controller.dart';
-import 'package:dine_out/model/store_item.dart';
-import 'package:dine_out/pages/app_user_list.dart';
-import 'package:dine_out/pages/menu.dart';
-import 'package:dine_out/pages/profile_page.dart';
-import 'package:dine_out/pages/store/add_item.dart';
-import 'package:dine_out/pages/store/cart_page.dart';
-import 'package:dine_out/pages/store/grocery_item.dart';
+import 'menu.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -208,7 +199,7 @@ class _HomePageState extends State<HomePage> {
               ), 
             ],
           ), */
-       body: MenuScreen(),
+       body: const MenuScreen(),
       ),
     );
   }

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 import '../utils/colors.dart';
 import '../utils/helper.dart';
@@ -26,12 +24,12 @@ class DessertScreen extends StatelessWidget {
                           onTap: () {
                             Navigator.of(context).pop();
                           },
-                          child: Icon(
+                          child: const Icon(
                             Icons.arrow_back_ios_rounded,
                             color: AppColor.primary,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 5,
                         ),
                         Expanded(
@@ -50,13 +48,13 @@ class DessertScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                  //SearchBar(
                  //   title: "Search Food",
                 //  ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   DessertCard(
@@ -67,7 +65,7 @@ class DessertScreen extends StatelessWidget {
                     name: "French Apple Pie",
                    
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   DessertCard(
@@ -78,7 +76,7 @@ class DessertScreen extends StatelessWidget {
                     name: "Dark Chocolate Cake",
                     
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   DessertCard(
@@ -89,7 +87,7 @@ class DessertScreen extends StatelessWidget {
                     name: "Street Shake",
                    
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   DessertCard(
@@ -100,7 +98,7 @@ class DessertScreen extends StatelessWidget {
                     name: "Fudgy Chewy Brownies",
                    
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 100,
                   ),
                 ],
@@ -173,7 +171,7 @@ class DessertCard extends StatelessWidget {
                    /* style: Helper.getTheme(context).headline4,/*copyWith(*/
                           color: Colors.white,
                        // ),*/
-                    style:TextStyle(
+                    style:const TextStyle(
                       color:Colors.white,
                       fontSize: 25,
                       
@@ -185,10 +183,10 @@ class DessertCard extends StatelessWidget {
                       Image.asset(
                         Helper.getAssetName("star_filled.png", "virtual"),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 5,
                       ),
-                      Text(
+                      const Text(
                         "Desserts",
                         style: TextStyle(color: Colors.white),
                       ),

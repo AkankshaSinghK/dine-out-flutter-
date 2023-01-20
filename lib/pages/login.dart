@@ -1,10 +1,6 @@
  import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 //import 'package:get/get.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'forgot_password_page.dart';
 
@@ -63,17 +59,17 @@ class _LoginPageState extends State<LoginPage> {
       backgroundColor: Colors.purple[100],
      // body: SafeArea(
        body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
       child:Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children:[
-             SizedBox(height: 75),
+             const SizedBox(height: 75),
 
-              Container(
+              SizedBox(
             width: w*0.5,
             height: h*0.3,
-            child:CircleAvatar(
+            child:const CircleAvatar(
                   backgroundColor: Colors.white70,
                   radius:60,
                   backgroundImage: AssetImage(
@@ -99,7 +95,7 @@ class _LoginPageState extends State<LoginPage> {
             fontSize:24,
           ),
           ),*/
-           SizedBox(height:50),
+           const SizedBox(height:50),
 
            Padding(
             padding: const EdgeInsets.symmetric(horizontal:25.0),
@@ -113,7 +109,7 @@ class _LoginPageState extends State<LoginPage> {
                 padding:const EdgeInsets.only(left:20.0),
               child:TextField(
                 controller:_emailController,
-                decoration:InputDecoration(
+                decoration:const InputDecoration(
                   border: InputBorder.none,
                   hintText: "Email",
                    prefixIcon: Icon(Icons.email_outlined,color:Color(0xFFF58434)),
@@ -123,7 +119,7 @@ class _LoginPageState extends State<LoginPage> {
            ),
            ),
 
-           SizedBox(height:25),
+           const SizedBox(height:25),
 
            Padding(
             padding: const EdgeInsets.symmetric(horizontal:25.0),
@@ -144,11 +140,11 @@ class _LoginPageState extends State<LoginPage> {
                 decoration:InputDecoration(
                   border: InputBorder.none,
                   hintText: "Password",
-                   prefixIcon: Icon(
+                   prefixIcon: const Icon(
                               Icons.lock_outline,color:Color.fromARGB(255, 243, 172, 101)
                             ),
                             suffixIcon: IconButton(
-                              icon : isHiddenPassword ? Icon( Icons.visibility_off_outlined) : Icon(Icons.visibility_outlined),
+                              icon : isHiddenPassword ? const Icon( Icons.visibility_off_outlined) : const Icon(Icons.visibility_outlined),
                               onPressed: () {
                                 
                                   _togglePasswordView();
@@ -160,7 +156,7 @@ class _LoginPageState extends State<LoginPage> {
            ),
            ),
 
-            SizedBox(height:20),
+            const SizedBox(height:20),
 
            Padding(
              padding: const EdgeInsets.symmetric(horizontal:25.0),
@@ -171,11 +167,11 @@ class _LoginPageState extends State<LoginPage> {
                   onTap: (){
                     Navigator.push(context,
                     MaterialPageRoute(builder: (context) {
-                      return ForgotPasswordPage();
+                      return const ForgotPasswordPage();
                     },));
                   },
                    child: 
-                     Text('Forgot Password?',
+                     const Text('Forgot Password?',
                      style:TextStyle(
                       color: Colors.blue,
                       fontWeight: FontWeight.bold,
@@ -186,18 +182,18 @@ class _LoginPageState extends State<LoginPage> {
              ),
            ), 
 
-           SizedBox(height:20),
+           const SizedBox(height:20),
 
            Padding(
             padding: const EdgeInsets.symmetric(horizontal:25.0),
             child:GestureDetector(
               onTap:signIn,
             child: Container(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(color: Colors.deepPurple,
               borderRadius: BorderRadius.circular(12),
               ),
-              child: Center(
+              child: const Center(
                 child: Text(
                   "Sign In",
                    style: TextStyle(color: Colors.white,
@@ -211,12 +207,12 @@ class _LoginPageState extends State<LoginPage> {
             ),
             ),
 
-               SizedBox(height:20),
+               const SizedBox(height:20),
 
                Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     "Not a member? ",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
@@ -224,7 +220,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   GestureDetector(
                     onTap: widget.showRegisterPage,
-                    child: Text(
+                    child: const Text(
                       "Register Now",
                       style: TextStyle(
                         color: Colors.blue,

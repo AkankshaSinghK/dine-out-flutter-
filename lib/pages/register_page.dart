@@ -1,12 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dine_out/pages/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:google_fonts/google_fonts.dart';
 //import 'package:cloud_firestore/cloud_firestore.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -130,7 +126,7 @@ Future addUserDetails(String Name, String Email,String Password,String confirmPa
           mainAxisAlignment: MainAxisAlignment.center,
           children:[
              SizedBox(height: h*0.05),
-             Container(
+             SizedBox(
             width: w*0.5,
             height: h*0.3,
             child:CircleAvatar(

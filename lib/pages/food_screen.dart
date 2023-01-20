@@ -1,13 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dine_out/controllers/store_controller.dart';
-import 'package:dine_out/model/store_item.dart';
-import 'package:dine_out/pages/store/grocery_item.dart';
-import 'package:dine_out/utils/colors.dart';
-import 'package:dine_out/utils/helper.dart';
+import 'store/grocery_item.dart';
+import '../utils/helper.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class FoodScreen extends StatefulWidget {
   const FoodScreen({super.key});
@@ -57,11 +52,11 @@ class _FoodScreenState extends State<FoodScreen> {
         stream: _usersStream,
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
-            return Text('Something went wrong');
+            return const Text('Something went wrong');
           }
 
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Text("Loading");
+            return const Text("Loading");
           }
 
        
@@ -97,7 +92,7 @@ class _FoodScreenState extends State<FoodScreen> {
               },
             );
           }
-          return Text('Something went wrong');
+          return const Text('Something went wrong');
         },
       ),
     );
@@ -266,7 +261,7 @@ class DessertCard extends StatelessWidget {
                     /* style: Helper.getTheme(context).headline4,/*copyWith(*/
                           color: Colors.white,
                        // ),*/
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 25,
                     ),
@@ -276,10 +271,10 @@ class DessertCard extends StatelessWidget {
                       Image.asset(
                         Helper.getAssetName("star_filled.png", "virtual"),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 5,
                       ),
-                      Text(
+                      const Text(
                         "Desserts",
                         style: TextStyle(color: Colors.white),
                       ),

@@ -1,5 +1,5 @@
-import 'package:dine_out/pages/menu.dart';
-import 'package:dine_out/pages/store/intro_screen.dart';
+import '../pages/menu.dart';
+import '../pages/store/intro_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -13,9 +13,9 @@ class MainPage extends StatelessWidget {
         stream:FirebaseAuth.instance.authStateChanges(),
         builder:(context, snapshot){
           if(snapshot.hasData){
-          return MenuScreen();
+          return const MenuScreen();
         }else{
-          return IntroScreen();
+          return const IntroScreen();
         }
         },
      ),

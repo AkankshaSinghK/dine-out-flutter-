@@ -1,5 +1,5 @@
-import 'package:dine_out/pages/login.dart';
-import 'package:dine_out/pages/register_page.dart';
+import '../pages/login.dart';
+import '../pages/register_page.dart';
 // ignore: implementation_imports
 import 'package:flutter/src/widgets/framework.dart';
 
