@@ -1,3 +1,5 @@
+import 'package:dine_out/pages/store/intro_screen.dart';
+
 import 'auth/main_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MainPage(),
+      home: IntroScreen(),
     );
   }
 }

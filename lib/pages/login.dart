@@ -1,6 +1,6 @@
  import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-//import 'package:get/get.dart';
+import 'package:get/get.dart';
 
 import 'forgot_password_page.dart';
 
@@ -35,10 +35,33 @@ class _LoginPageState extends State<LoginPage> {
   
 
   Future signIn() async{
+    try{
     await FirebaseAuth.instance.signInWithEmailAndPassword(
       email: _emailController.text.trim(),
       password: _passwordController.text.trim(),
     );
+    Get.snackbar("Logging in", "Succesful login",
+      backgroundColor: Colors.green,
+      snackPosition: SnackPosition.BOTTOM,
+          titleText: const Text(
+            "Success",
+            style: TextStyle(color: Colors.white),
+          ),)  ;
+    }catch(e){
+       Get.snackbar("About login", "Login message",
+          backgroundColor: Colors.redAccent,
+          snackPosition: SnackPosition.BOTTOM,
+          titleText: const Text(
+            "Log in failed",
+            style: TextStyle(color: Colors.white),
+          ),
+          messageText: Text(
+            e.toString(),
+            style: const TextStyle(color: Colors.white),
+          ));
+
+
+    }
     
   }
 
@@ -56,7 +79,7 @@ class _LoginPageState extends State<LoginPage> {
      double h = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: Colors.purple[100],
+      backgroundColor: Color.fromARGB(255, 245, 223, 195),
      // body: SafeArea(
        body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),

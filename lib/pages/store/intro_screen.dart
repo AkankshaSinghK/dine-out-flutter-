@@ -1,4 +1,6 @@
 
+import 'package:dine_out/auth/main_page.dart';
+
 import '../../auth/auth_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,7 +13,7 @@ class IntroScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[50],
+      backgroundColor: Color.fromARGB(255, 245, 223, 195),
       body: SafeArea(
         child: Column(
           children: [
@@ -77,7 +79,7 @@ class IntroScreen extends StatelessWidget {
             ); 
                   }*/
               ),
-              onTap:() =>  Get.to(() => const AuthPage()),
+              onTap:() =>  Get.to(() => const MainPage()),
             ),
 
             const Spacer(),

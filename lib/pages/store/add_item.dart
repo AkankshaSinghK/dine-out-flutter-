@@ -155,7 +155,20 @@ class _AddMenuItemState extends State<AddMenuItem> {
                           title: const Text('Drinks'),
                           leading: Radio<ItemCategory>(
                             fillColor: MaterialStateColor.resolveWith((states) => Colors.green),
-                            value: ItemCategory.drink,
+                            value: ItemCategory.beverages,
+                            groupValue: category,
+                            onChanged: (value) {
+                              setState(() {
+                                category = value!;
+                              });
+                            },
+                          ),
+                        ),
+                        ListTile(
+                          title: const Text('Desserts'),
+                          leading: Radio<ItemCategory>(
+                            fillColor: MaterialStateColor.resolveWith((states) => Colors.green),
+                            value: ItemCategory.desserts,
                             groupValue: category,
                             onChanged: (value) {
                               setState(() {

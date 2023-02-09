@@ -48,55 +48,61 @@ class _FoodScreenState extends State<FoodScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: StreamBuilder<QuerySnapshot>(
-        stream: _usersStream,
-        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (snapshot.hasError) {
-            return const Text('Something went wrong');
-          }
-
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Text("Loading");
-          }
-
-       
-          if (snapshot.hasData) {
-            return GridView.builder(
-              padding: const EdgeInsets.all(12),
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: snapshot.data!.docs.length,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 1 / 1.2,
-              ),
-              itemBuilder: (context, index) {
-                var storeItem = snapshot.data!.docs[index].data() as Map;
-                // Widget widget = admin ? 
-                return  GroceryItemTile(
-                  itemName: storeItem['name'],
-                  itemPrice: storeItem['price'].toString(),
-                  imagePath: storeItem['itemImage'],
-                  color: Colors.green,
-                  onPressed: () => print("Tile was clicked"),
-                );
-                // :              
-              // return   DessertCard(
-              //          image:storeItem['imageItem'],
-                     
-              //        name: storeItem['name'],
-
-              //     );
+      
+      body: SafeArea(
+        child: StreamBuilder<QuerySnapshot>(
+          stream: _usersStream,
+          builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (snapshot.hasError) {
+              return const Text('Something went wrong');
+            }
+      
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Text("Loading");
+            }
+      
+         
+            if (snapshot.hasData) {
+              return GridView.builder(
+                padding: const EdgeInsets.all(12),
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: snapshot.data!.docs.length,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 1 / 1.2,
+                ),
+                itemBuilder: (context, index) {
+                  var storeItem = snapshot.data!.docs[index].data() as Map;
+                  // Widget widget = admin ? 
+                  return  GroceryItemTile(
+                    itemName: storeItem['name'],
+                    itemPrice: storeItem['price'].toString(),
+                    imagePath: storeItem['itemImage'],
+                    color: Colors.green,
+                    onPressed: () => print("Tile was clicked"),
+                  );
+                  
+                  // :              
+                // return   DessertCard(
+                //          image:storeItem['imageItem'],
+                       
+                //        name: storeItem['name'],
+      
+                //     );
+                  
+      
+                //  return widget;
                 
-
-              //  return widget;
-              },
-            );
-          }
-          return const Text('Something went wrong');
-        },
+                },
+              );
+            }
+            return const Text('Something went wrong');
+          },
+        ),
       ),
     );
   }
+}
 
 //   @override
 //   Widget build(BuildContext context) {
@@ -207,9 +213,9 @@ class _FoodScreenState extends State<FoodScreen> {
 //       ),
 //     );
 //   }
-}
 
-class DessertCard extends StatelessWidget {
+
+/* class DessertCard extends StatelessWidget {
   const DessertCard({
     Key? key,
     required String name,
@@ -288,4 +294,4 @@ class DessertCard extends StatelessWidget {
       ),
     );
   }
-}
+} */

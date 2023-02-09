@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 
-enum ItemCategory { food, drink }
+enum ItemCategory { food, beverages, desserts }
 
 extension SizeExtension on ItemCategory {
   String get name => describeEnum(this);
@@ -12,7 +12,9 @@ ItemCategory parseCategory(final String categoryName) {
     case 'food':
       return ItemCategory.food;
     case 'drink':
-      return ItemCategory.drink;
+      return ItemCategory.beverages;
+    case 'desserts':
+      return ItemCategory.desserts;
     default:
       throw Exception('$categoryName is not a valid ItemCategory');
   }

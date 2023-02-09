@@ -1,11 +1,113 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dine_out/pages/store/grocery_item.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 import '../utils/colors.dart';
 import '../utils/helper.dart';
 import 'package:flutter/material.dart';
 
-class BeverageScreen extends StatelessWidget {
+class BeverageScreen extends StatefulWidget {
   const BeverageScreen({super.key});
 
+   @override
+  State<BeverageScreen> createState() => _BeverageScreenState();
+}
+
+class _BeverageScreenState extends State<BeverageScreen> {
+  final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance
+      .collection('storeItems')
+      .where('category', isEqualTo: 'beverages')
+      .snapshots();
+
+   final user = FirebaseAuth.instance.currentUser!;
+
+  bool admin = false;
+
+  void isAdmin() async {
+    DocumentSnapshot adminRef = await FirebaseFirestore.instance
+        .collection('admin')
+        .doc(user.uid)
+        .get();
+    if (adminRef.exists) {
+      setState(() {
+        admin = true;
+        print("ADMIN");
+      });
+    } else {
+      setState(() {
+        admin = false;
+        print("USER");
+      });
+    }
+  }
+
   @override
+  void initState() {
+    isAdmin();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      
+      body: SafeArea(
+        child: StreamBuilder<QuerySnapshot>(
+          stream: _usersStream,
+          builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (snapshot.hasError) {
+              return const Text('Something went wrong');
+            }
+      
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Text("Loading");
+            }
+      
+         
+            if (snapshot.hasData) {
+              return GridView.builder(
+                padding: const EdgeInsets.all(12),
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: snapshot.data!.docs.length,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 1 / 1.2,
+                ),
+                itemBuilder: (context, index) {
+                  var storeItem = snapshot.data!.docs[index].data() as Map;
+                  // Widget widget = admin ? 
+                  return  GroceryItemTile(
+                    itemName: storeItem['name'],
+                    itemPrice: storeItem['price'].toString(),
+                    imagePath: storeItem['itemImage'],
+                    color: Colors.green,
+                    onPressed: () => print("Tile was clicked"),
+                  );
+                  
+                  // :              
+                // return   DessertCard(
+                //          image:storeItem['imageItem'],
+                       
+                //        name: storeItem['name'],
+      
+                //     );
+                  
+      
+                //  return widget;
+                
+                },
+              );
+            }
+            return const Text('Something went wrong');
+          },
+        ),
+      ),
+    );
+  }
+}
+
+
+ /* @override
   Widget build(BuildContext context) {
     return Scaffold(
        body: Stack(
@@ -198,5 +300,5 @@ class DessertCard extends StatelessWidget {
       ),
     );
   }
-}
+}*/
    
