@@ -11,7 +11,7 @@ ItemCategory parseCategory(final String categoryName) {
   switch (categoryName) {
     case 'food':
       return ItemCategory.food;
-    case 'drink':
+    case 'beverages':
       return ItemCategory.beverages;
     case 'desserts':
       return ItemCategory.desserts;

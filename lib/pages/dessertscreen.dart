@@ -1,8 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dine_out/model/store_item.dart';
+import 'package:dine_out/pages/store/add_item.dart';
+import 'package:dine_out/pages/store/cart_page.dart';
 import 'package:dine_out/pages/store/grocery_item.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../controllers/store_controller.dart';
 import '../utils/colors.dart';
 import '../utils/helper.dart';
 
@@ -15,9 +20,10 @@ class DessertScreen extends StatefulWidget {
 }
 
 class _DessertScreenState extends State<DessertScreen> {
-  final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance
+   final Stream<QuerySnapshot<StoreItem>> _usersStream = FirebaseFirestore.instance
       .collection('storeItems')
-      .where('category', isEqualTo: 'desserts')
+      .where('category', isEqualTo: 'desserts').withConverter(fromFirestore: 
+      StoreItem.fromFirestore, toFirestore: (StoreItem item, _) => item.toFirestore(),)
       .snapshots();
 
    final user = FirebaseAuth.instance.currentUser!;
@@ -53,9 +59,9 @@ class _DessertScreenState extends State<DessertScreen> {
     return Scaffold(
       
       body: SafeArea(
-        child: StreamBuilder<QuerySnapshot>(
+        child: StreamBuilder<QuerySnapshot<StoreItem>>(
           stream: _usersStream,
-          builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          builder: (BuildContext context, AsyncSnapshot<QuerySnapshot<StoreItem>> snapshot) {
             if (snapshot.hasError) {
               return const Text('Something went wrong');
             }
@@ -94,7 +100,7 @@ class _DessertScreenState extends State<DessertScreen> {
 
                   GridView.builder(
                      scrollDirection: Axis.vertical,
-    shrinkWrap: true,
+                    shrinkWrap: true,
                     padding: const EdgeInsets.all(12),
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: snapshot.data!.docs.length,
@@ -103,26 +109,19 @@ class _DessertScreenState extends State<DessertScreen> {
                       childAspectRatio: 1 / 1.2,
                     ),
                     itemBuilder: (context, index) {
-                      var storeItem = snapshot.data!.docs[index].data() as Map;
+                      StoreItem storeItem = snapshot.data!.docs[index].data();
                       // Widget widget = admin ? 
                       return  GroceryItemTile(
-                        itemName: storeItem['name'],
-                        itemPrice: storeItem['price'].toString(),
-                        imagePath: storeItem['itemImage'],
+                        itemName: storeItem.name,
+                        itemPrice: storeItem.price.toString(),
+                        imagePath: storeItem.itemImage,
                         color: Colors.green,
-                        onPressed: () => print("Tile was clicked"),
+                        onPressed: ()  {
+                          print(storeItem.category);
+                          storeController.addItemToCart(storeItem);
+                        },
                       );
                       
-                      // :              
-                    // return   DessertCard(
-                    //          image:storeItem['imageItem'],
-                           
-                    //        name: storeItem['name'],
-      
-                    //     );
-                      
-      
-                    //  return widget;
                     
                     },
                   ),
@@ -133,6 +132,14 @@ class _DessertScreenState extends State<DessertScreen> {
           },
         ),
       ),
+       floatingActionButton:!admin? FloatingActionButton(
+          backgroundColor: Colors.black,
+          onPressed: () {
+            admin ? Get.to(() => const AddMenuItem()) : Get.to(() => const CartPage());
+          },
+          child: const Icon(Icons.shopping_bag),
+        )
+        :null,
     );
   }
 }

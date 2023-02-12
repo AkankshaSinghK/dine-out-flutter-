@@ -1,7 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dine_out/model/store_item.dart';
+import 'package:dine_out/pages/store/add_item.dart';
+import 'package:dine_out/pages/store/cart_page.dart';
 import 'package:dine_out/pages/store/grocery_item.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get/get.dart';
 
+import '../controllers/store_controller.dart';
 import '../utils/colors.dart';
 import '../utils/helper.dart';
 import 'package:flutter/material.dart';
@@ -9,17 +14,18 @@ import 'package:flutter/material.dart';
 class BeverageScreen extends StatefulWidget {
   const BeverageScreen({super.key});
 
-   @override
+  @override
   State<BeverageScreen> createState() => _BeverageScreenState();
 }
 
 class _BeverageScreenState extends State<BeverageScreen> {
-  final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance
+  final Stream<QuerySnapshot<StoreItem>> _usersStream = FirebaseFirestore.instance
       .collection('storeItems')
-      .where('category', isEqualTo: 'beverages')
+      .where('category', isEqualTo: 'beverages').withConverter(fromFirestore: 
+      StoreItem.fromFirestore, toFirestore: (StoreItem item, _) => item.toFirestore(),)
       .snapshots();
 
-   final user = FirebaseAuth.instance.currentUser!;
+  final user = FirebaseAuth.instance.currentUser!;
 
   bool admin = false;
 
@@ -50,64 +56,92 @@ class _BeverageScreenState extends State<BeverageScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       body: SafeArea(
-        child: StreamBuilder<QuerySnapshot>(
+        child: StreamBuilder<QuerySnapshot<StoreItem>>(
           stream: _usersStream,
-          builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          builder:
+              (BuildContext context, AsyncSnapshot<QuerySnapshot<StoreItem>> snapshot) {
             if (snapshot.hasError) {
               return const Text('Something went wrong');
             }
-      
+
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Text("Loading");
             }
-      
-         
+
             if (snapshot.hasData) {
-              return GridView.builder(
-                padding: const EdgeInsets.all(12),
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: snapshot.data!.docs.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 1 / 1.2,
-                ),
-                itemBuilder: (context, index) {
-                  var storeItem = snapshot.data!.docs[index].data() as Map;
-                  // Widget widget = admin ? 
-                  return  GroceryItemTile(
-                    itemName: storeItem['name'],
-                    itemPrice: storeItem['price'].toString(),
-                    imagePath: storeItem['itemImage'],
-                    color: Colors.green,
-                    onPressed: () => print("Tile was clicked"),
-                  );
-                  
-                  // :              
-                // return   DessertCard(
-                //          image:storeItem['imageItem'],
-                       
-                //        name: storeItem['name'],
-      
-                //     );
-                  
-      
-                //  return widget;
-                
-                },
+              return Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: const Icon(
+                            Icons.arrow_back_ios_rounded,
+                            color: AppColor.primary,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(9.0),
+                          child: Text(
+                            "Beverages",
+                            style: Helper.getTheme(context).headline5,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  GridView.builder(
+                    scrollDirection: Axis.vertical,
+                    shrinkWrap: true,
+                    padding: const EdgeInsets.all(12),
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: snapshot.data!.docs.length,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 1 / 1.2,
+                    ),
+                    itemBuilder: (context, index) {
+                      StoreItem storeItem = snapshot.data!.docs[index].data();
+
+                      // Widget widget = admin ?
+                      return GroceryItemTile(
+                        itemName: storeItem.name,
+                        itemPrice: storeItem.price.toString(),
+                        imagePath: storeItem.itemImage,
+                        color: Colors.green,
+                        onPressed: () {
+                          print(storeItem.category);
+                          storeController.addItemToCart(storeItem);
+                        }, //print("Tile was clicked"),
+                      );
+                    },
+                  ),
+                ],
               );
             }
             return const Text('Something went wrong');
           },
         ),
       ),
+       floatingActionButton:!admin? FloatingActionButton(
+          backgroundColor: Colors.black,
+          onPressed: () {
+            admin ? Get.to(() => const AddMenuItem()) : Get.to(() => const CartPage());
+          },
+          child: const Icon(Icons.shopping_bag),
+        )
+        :null,
     );
   }
 }
 
-
- /* @override
+/* @override
   Widget build(BuildContext context) {
     return Scaffold(
        body: Stack(
@@ -301,4 +335,3 @@ class DessertCard extends StatelessWidget {
     );
   }
 }*/
-   
