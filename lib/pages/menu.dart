@@ -18,6 +18,7 @@ class MenuScreen extends StatefulWidget {
 }
 
 class _MenuScreenState extends State<MenuScreen> {
+  int _selectedIndex = 0;
 
     final Stream<QuerySnapshot<StoreItem>> _menuStream = FirebaseFirestore.instance
       .collection('storeItems')
@@ -49,8 +50,10 @@ class _MenuScreenState extends State<MenuScreen> {
 
   @override
   void initState() {
-    isAdmin();
+    
     super.initState();
+    isAdmin();
+
   }
 
   @override

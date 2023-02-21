@@ -1,28 +1,45 @@
+
+
+import 'package:dine_out/model/review_cart_provider.dart';
+import 'package:dine_out/pages/payment/address_delivery_details.dart';
+import 'package:dine_out/pages/payment/count.dart';
+import 'package:dine_out/pages/payment/delivery_details.dart';
+import 'package:provider/provider.dart';
+
 import '../../model/store_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../controllers/store_controller.dart';
 
-class CartPage extends StatelessWidget {
+class CartPage extends StatefulWidget {
+  
   const CartPage({super.key});
 
   @override
+  State<CartPage> createState() => _CartPageState();
+}
+
+class _CartPageState extends State<CartPage> {
+  int _selectedIndex = 1;
+  @override
   Widget build(BuildContext context) {
+    ReviewCartProvider reviewCartProvider = Provider.of(context);
     var cartItems = storeController.cartItems;
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        iconTheme: IconThemeData(
-          color: Colors.grey[800],
-        ),
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: Colors.transparent,
+      //   elevation: 0,
+      //   iconTheme: IconThemeData(
+      //     color: Colors.grey[800],
+      //   ),
+      // ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Let's order fresh items for you
+          SizedBox(height: 60.0),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24.0),
             child: Text(
@@ -115,18 +132,31 @@ class CartPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(28),
                     ),
                     padding: const EdgeInsets.all(12),
-                    child: Row(
-                      children: const [
-                        Text(
-                          'Pay Now',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        Icon(
-                          Icons.arrow_forward_ios,
-                          size: 16,
-                          color: Colors.white,
-                        ),
-                      ],
+                    child: GestureDetector(
+                      onTap: () => {
+                        // reviewCartProvider.addReviewCartData( ),
+                        
+                        Navigator.push(context,MaterialPageRoute(builder: ((context) => DeliveryDetails()))),
+                        print("Redirecting to delivery details ....")
+
+                      },
+                      child: Row(
+                        children: const [
+                          Text(
+                            'Buy Now',
+                            style: TextStyle(color: Colors.white),
+                            
+                          ),
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            size: 16,
+                            color: Colors.white,
+                          ),
+                          
+                          
+                       ],
+                       
+                      ),
                     ),
                   ),
                 ],

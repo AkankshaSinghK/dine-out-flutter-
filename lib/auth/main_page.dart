@@ -1,4 +1,5 @@
 import 'package:dine_out/auth/auth_page.dart';
+import 'package:dine_out/pages/bottom_nav_bar.dart';
 import 'package:dine_out/pages/home_page.dart';
 
 import '../pages/menu.dart';
@@ -16,7 +17,7 @@ class MainPage extends StatelessWidget {
         stream:FirebaseAuth.instance.authStateChanges(),
         builder:(context, snapshot){
           if(snapshot.hasData){
-          return const HomePage();
+          return const BottomNavigationBarScreen();
         }else{
           return const AuthPage();
         }

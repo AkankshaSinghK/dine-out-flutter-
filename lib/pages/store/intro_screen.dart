@@ -1,4 +1,3 @@
-
 import 'package:dine_out/auth/main_page.dart';
 
 import '../../auth/auth_page.dart';
@@ -6,36 +5,44 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
 class IntroScreen extends StatelessWidget {
   const IntroScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 245, 223, 195),
+      
+      backgroundColor: const Color(0xFFFFF1E8),
       body: SafeArea(
         child: Column(
           children: [
             // big logo
-            Padding(
-              padding: const EdgeInsets.only(
+            const Padding(
+              padding: EdgeInsets.only(
                 left: 100.0,
                 right: 100.0,
-                top: 120,
+                top: 50,
                 bottom: 20,
               ),
-              child: Image.asset('img/food.png'),
-               
+            ),
+            Container(
+              width: 300,
+              height: 200,
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                image: AssetImage('img/food1.png'),
+                fit: BoxFit.cover
+              )),
             ),
 
             // we deliver groceries at your doorstep
             Padding(
-              padding: const EdgeInsets.all(28.0),
+              padding: const EdgeInsets.all(30.0),
               child: Text(
                 'We deliver fresh food at your doorstep',
                 textAlign: TextAlign.center,
-                style: GoogleFonts.notoSerif(fontSize: 36, fontWeight: FontWeight.bold),
+                style: GoogleFonts.notoSerif(
+                    fontSize: 36, fontWeight: FontWeight.bold),
               ),
             ),
 
@@ -55,10 +62,9 @@ class IntroScreen extends StatelessWidget {
 
             // get started button
             GestureDetector(
-             
-            // onTap: () => Get.to(() => const LoginOrRegisterPage()),
-            
-               child: Container(
+              // onTap: () => Get.to(() => const LoginOrRegisterPage()),
+
+              child: Container(
                 padding: const EdgeInsets.all(24),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16),
@@ -79,7 +85,7 @@ class IntroScreen extends StatelessWidget {
             ); 
                   }*/
               ),
-              onTap:() =>  Get.to(() => const MainPage()),
+              onTap: () => Get.to(() => const MainPage()),
             ),
 
             const Spacer(),

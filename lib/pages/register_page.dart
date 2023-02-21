@@ -112,12 +112,15 @@ class _RegisterPageState extends State<RegisterPage> {
 
   Future addUserDetails(String Name, String Email, String Password,
       String confirmPassword) async {
-    await FirebaseFirestore.instance.collection('users').add({
+    await FirebaseFirestore.instance.collection('users').doc(FirebaseAuth.instance.currentUser!.uid).set({
       'name': Name,
       'email': Email,
       'password': Password,
       'confirmpassword': confirmPassword,
-    });
+    })
+    .then((value) => print("User Added"))
+    .catchError( (error) => print("Failed to add user")) ;
+    
   }
 
   bool passwordConfirmed() {
@@ -134,22 +137,74 @@ class _RegisterPageState extends State<RegisterPage> {
     double w = MediaQuery.of(context).size.width;
     double h = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 245, 223, 195),
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
           physics: BouncingScrollPhysics(),
           child: Center(
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-              SizedBox(height: h * 0.05),
-              SizedBox(
-                width: w * 0.5,
-                height: h * 0.3,
-                child: CircleAvatar(
-                  backgroundColor: Colors.white70,
-                  radius: 60,
-                  backgroundImage: AssetImage("img/DineOut.png"),
-                ),
+                   Container(
+              height: 350,
+              child: Stack(
+                children: <Widget>[
+                  Positioned(
+                    top: -20,
+                    height: 180,
+                    width: w,
+                    child:Container(
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('img/background.png'),
+                          fit: BoxFit.fill
+                        )
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    height: 180,
+                    width: w+20,
+                    child:Container(
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('img/background-2.png'),
+                          fit: BoxFit.fill
+                        )
+                      ),
+                    ),
+                  ),Positioned
+                  (
+                    left: 50,
+                    top: 170,
+                    height:200,
+                    width:w*0.7,
+                    child: Container(
+                     width: w*0.5,
+                    height: h*0.10,
+                    
+                  decoration: const BoxDecoration(
+                  image: DecorationImage(
+                image: AssetImage('img/DineOut.png'),
+                fit: BoxFit.cover
+              )),
+                                  
+                        ),
+                  ),
+
+                ],
+
               ),
+            ),
+              
+               SizedBox(height: h * 0.05),
+              // SizedBox(
+              //   width: w * 0.5,
+              //   height: h * 0.3,
+              //   child: CircleAvatar(
+              //     backgroundColor: Colors.white70,
+              //     radius: 60,
+              //     backgroundImage: AssetImage("img/DineOut.png"),
+              //   ),
+              // ),
               /* Text(
             "Hello There ",
           style: GoogleFonts.bebasNeue(
@@ -168,7 +223,7 @@ class _RegisterPageState extends State<RegisterPage> {
             fontSize:24,
           ),
           ),*/
-              SizedBox(height: 30),
+              
               Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: TextField(
@@ -184,11 +239,11 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                         hintText: "Name",
                         prefixIcon: Icon(Icons.account_circle_outlined,
-                            color: Color.fromARGB(255, 243, 172, 101)),
+                            color: Colors.deepPurple),
                         fillColor: Colors.grey[200],
                         filled: true,
                       ))),
-              SizedBox(height: 25),
+              SizedBox(height: 15),
               Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: TextField(
@@ -204,11 +259,11 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                         hintText: "Email",
                         prefixIcon: Icon(Icons.email_outlined,
-                            color: Color.fromARGB(255, 243, 172, 101)),
+                            color: Colors.deepPurple),
                         fillColor: Colors.grey[200],
                         filled: true,
                       ))),
-              SizedBox(height: 25),
+              SizedBox(height: 15),
               Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: TextField(
@@ -230,7 +285,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                         hintText: "Password",
                         prefixIcon: Icon(Icons.lock_outline,
-                            color: Color.fromARGB(255, 243, 172, 101)),
+                            color: Colors.deepPurple),
                         suffixIcon: IconButton(
                           icon: isHiddenPassword
                               ? Icon(Icons.visibility_off_outlined)
@@ -242,7 +297,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         fillColor: Colors.grey[200],
                         filled: true,
                       ))),
-              SizedBox(height: 20),
+              SizedBox(height: 15),
               Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: TextField(
@@ -265,7 +320,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         fillColor: Colors.grey[200],
                         filled: true,
                         prefixIcon: Icon(Icons.password_outlined,
-                            color: Color.fromARGB(255, 243, 172, 101)),
+                            color: Colors.deepPurple),
                         suffixIcon: IconButton(
                           icon: isHiddenConfirmPassword
                               ? Icon(Icons.visibility_off_outlined)
@@ -275,7 +330,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           },
                         ),
                       ))),
-              SizedBox(height: 20),
+              SizedBox(height: 15),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: GestureDetector(
@@ -301,7 +356,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 15),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

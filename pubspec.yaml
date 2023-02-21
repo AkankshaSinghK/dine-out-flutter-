@@ -40,10 +40,14 @@ dependencies:
   get:
   firebase_auth: ^4.2.0
   firebase_core: ^2.4.0
-  cloud_firestore: ^4.3.1
+  cloud_firestore: ^4.4.2
   firebase_storage: ^11.0.10
   image_picker: ^0.8.6
   permission_handler: ^10.2.0
+  google_nav_bar: ^5.0.6
+  fluttertoast: ^8.1.2
+  provider: ^6.0.5
+ 
 
 dev_dependencies:
   flutter_test:

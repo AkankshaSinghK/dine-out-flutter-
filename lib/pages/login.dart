@@ -79,7 +79,7 @@ class _LoginPageState extends State<LoginPage> {
      double h = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 245, 223, 195),
+      backgroundColor: Colors.white,
      // body: SafeArea(
        body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
@@ -87,18 +87,50 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children:[
-             const SizedBox(height: 75),
+             
+             Container(
+              height: 220,
+              child: Stack(
+                children: <Widget>[
+                  Positioned(
+                    top: -20,
+                    height: 230,
+                    width: w,
+                    child:Container(
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('img/background.png'),
+                          fit: BoxFit.fill
+                        )
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    height: 240,
+                    width: w+20,
+                    child:Container(
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('img/background-2.png'),
+                          fit: BoxFit.fill
+                        )
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
 
-              SizedBox(
-            width: w*0.5,
-            height: h*0.3,
-            child:const CircleAvatar(
+                Container(
+                   width: w*0.5,
+            height: h*0.28,
+                   child:const CircleAvatar(
                   backgroundColor: Colors.white70,
                   radius:60,
                   backgroundImage: AssetImage(
                      "img/DineOut.png"
                      ),
-                ),
+                )
       ),
          /* Text(
             "Hello Again!",
@@ -118,8 +150,7 @@ class _LoginPageState extends State<LoginPage> {
             fontSize:24,
           ),
           ),*/
-           const SizedBox(height:50),
-
+   
            Padding(
             padding: const EdgeInsets.symmetric(horizontal:25.0),
             child: Container(
@@ -135,7 +166,8 @@ class _LoginPageState extends State<LoginPage> {
                 decoration:const InputDecoration(
                   border: InputBorder.none,
                   hintText: "Email",
-                   prefixIcon: Icon(Icons.email_outlined,color:Color(0xFFF58434)),
+                   prefixIcon: Icon(Icons.email_outlined,
+                   color:Colors.deepPurple),
                 )
               )  
             ),
@@ -164,7 +196,8 @@ class _LoginPageState extends State<LoginPage> {
                   border: InputBorder.none,
                   hintText: "Password",
                    prefixIcon: const Icon(
-                              Icons.lock_outline,color:Color.fromARGB(255, 243, 172, 101)
+                              Icons.lock_outline,
+                              color:Colors.deepPurple,
                             ),
                             suffixIcon: IconButton(
                               icon : isHiddenPassword ? const Icon( Icons.visibility_off_outlined) : const Icon(Icons.visibility_outlined),

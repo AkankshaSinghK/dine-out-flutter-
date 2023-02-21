@@ -50,15 +50,18 @@ class _DessertScreenState extends State<DessertScreen> {
 
   @override
   void initState() {
-    isAdmin();
+    
     super.initState();
+    isAdmin();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
       
-      body: SafeArea(
+        child: SafeArea(
         child: StreamBuilder<QuerySnapshot<StoreItem>>(
           stream: _usersStream,
           builder: (BuildContext context, AsyncSnapshot<QuerySnapshot<StoreItem>> snapshot) {
@@ -132,9 +135,11 @@ class _DessertScreenState extends State<DessertScreen> {
           },
         ),
       ),
+       ),
        floatingActionButton:!admin? FloatingActionButton(
           backgroundColor: Colors.black,
           onPressed: () {
+            
             admin ? Get.to(() => const AddMenuItem()) : Get.to(() => const CartPage());
           },
           child: const Icon(Icons.shopping_bag),
