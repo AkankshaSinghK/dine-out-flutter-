@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dine_out/pages/user_home.dart';
+
+import 'package:dine_out/pages/userhomepage.dart';
 import 'package:dine_out/read%20data/get_user_details.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -121,7 +122,7 @@ class _HomePageState extends State<HomePage> {
                   ),
           ],
         )
-        ):UserHome(),
+        ):UserHomePage(),
       ),
     );
   }

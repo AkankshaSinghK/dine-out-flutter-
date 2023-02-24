@@ -5,7 +5,7 @@ import 'package:dine_out/pages/bottom_nav_bar.dart';
 import 'package:dine_out/pages/menu.dart';
 import 'package:dine_out/pages/payment/order_data.dart';
 import 'package:dine_out/pages/payment/single_delivery_item.dart';
-import 'package:dine_out/pages/user_home.dart';
+import 'package:dine_out/pages/ordersummary.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -71,7 +71,7 @@ class _PaymentSummaryState extends State<PaymentSummary> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => UserHome( deliverAddressList:widget.deliverAddressList),
+                          builder: (context) => OrderSummary( deliverAddressList:widget.deliverAddressList),
                         ),
                       );
                     },

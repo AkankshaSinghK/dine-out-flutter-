@@ -28,13 +28,13 @@ class _CartPageState extends State<CartPage> {
     var cartItems = storeController.cartItems;
 
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Colors.transparent,
-      //   elevation: 0,
-      //   iconTheme: IconThemeData(
-      //     color: Colors.grey[800],
-      //   ),
-      // ),
+       appBar: AppBar(
+         backgroundColor: Colors.transparent,
+         elevation: 0,
+         iconTheme: IconThemeData(
+           color: Colors.grey[800],
+         ),
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

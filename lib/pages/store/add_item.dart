@@ -152,7 +152,7 @@ class _AddMenuItemState extends State<AddMenuItem> {
                           ),
                         ),
                         ListTile(
-                          title: const Text('Drinks'),
+                          title: const Text('Beverages'),
                           leading: Radio<ItemCategory>(
                             fillColor: MaterialStateColor.resolveWith((states) => Colors.green),
                             value: ItemCategory.beverages,

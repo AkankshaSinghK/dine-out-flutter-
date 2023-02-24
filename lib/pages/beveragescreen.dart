@@ -56,7 +56,9 @@ class _BeverageScreenState extends State<BeverageScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
+        body: SingleChildScrollView(
+       physics: const BouncingScrollPhysics(),
+      child: SafeArea(
         child: StreamBuilder<QuerySnapshot<StoreItem>>(
           stream: _usersStream,
           builder:
@@ -129,6 +131,7 @@ class _BeverageScreenState extends State<BeverageScreen> {
           },
         ),
       ),
+        ),
        floatingActionButton:!admin? FloatingActionButton(
           backgroundColor: Colors.black,
           onPressed: () {

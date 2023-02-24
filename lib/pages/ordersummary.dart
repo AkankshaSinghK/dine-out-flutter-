@@ -10,67 +10,48 @@ import '../controllers/store_controller.dart';
 import '../model/delivery_adress_model.dart';
 import 'home_page.dart';
 
-class UserHome extends StatefulWidget {
+class OrderSummary extends StatefulWidget {
   final DeliveryAddressModel? deliverAddressList;
-  const UserHome({this.deliverAddressList});
+  const OrderSummary({this.deliverAddressList});
 
   @override
-  State<UserHome> createState() => _UserHomeState();
+  State<OrderSummary> createState() => _OrderSummaryState();
 }
 
-class _UserHomeState extends State<UserHome> {
-  int _selectedIndex = 2;
+class _OrderSummaryState extends State<OrderSummary> {
+ // int _selectedIndex = 2;
   var cartItems = storeController.cartItems;
 
-  final user = FirebaseAuth.instance.currentUser!;
+//   final user = FirebaseAuth.instance.currentUser!;
   
 
- bool admin = false;
+//  bool admin = false;
 
-  void isAdmin() async {
-    DocumentSnapshot adminRef = await FirebaseFirestore.instance
-        .collection('admin')
-        .doc(user.uid)
-        .get();
-    if (adminRef.exists) {
-      setState(() {
-        admin = true;
-      });
-    } else {
-      setState(() {
-        admin = false;
-      });
-    }
-  } 
+//   void isAdmin() async {
+//     DocumentSnapshot adminRef = await FirebaseFirestore.instance
+//         .collection('admin')
+//         .doc(user.uid)
+//         .get();
+//     if (adminRef.exists) {
+//       setState(() {
+//         admin = true;
+//       });
+//     } else {
+//       setState(() {
+//         admin = false;
+//       });
+//     }
+//   } 
 
-  @override
-  void initState() {
+//   @override
+//   void initState() {
     
-    isAdmin();
-    super.initState();
-  } 
+//     isAdmin();
+//     super.initState();
+//   } 
   @override
   Widget build(BuildContext context) {
     return  SafeArea(child: Scaffold(
-      //  appBar: AppBar(
-        
-            
-      //     title: Text(
-      //       //"Akanksha",
-      //       user.email!,
-      //       style: const TextStyle(fontSize: 16),
-      //     ),
-      //     centerTitle: false,
-      //     actions: [
-         
-      //       GestureDetector(
-      //         onTap: () {
-      //           FirebaseAuth.instance.signOut();
-      //         },
-      //         child: const Icon(Icons.logout),
-      //       ),
-      //     ],
-      //   ),
       
 
       body: 
@@ -80,7 +61,7 @@ class _UserHomeState extends State<UserHome> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: 
         [
-          SizedBox(height: 10,),
+         // SizedBox(height: 10,),
           CustomAppBar(),
           SizedBox(height: 40,),
           Text("Your Recent Order",
@@ -141,7 +122,7 @@ class _UserHomeState extends State<UserHome> {
 
                      SizedBox(height: 30,),
 
-                 widget.deliverAddressList == null ? Container()  :   SingleDeliveryItem(
+               /*  widget.deliverAddressList == null ? Container()  : */  SingleDeliveryItem(
                       address:
                           "${widget.deliverAddressList!.adressLane1},${widget.deliverAddressList!.adressLane2}\nPincode: ${widget.deliverAddressList!.pinCode}",
                       title:

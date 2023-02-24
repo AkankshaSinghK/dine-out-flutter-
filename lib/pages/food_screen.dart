@@ -56,7 +56,9 @@ class _FoodScreenState extends State<FoodScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
+       body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+      child: SafeArea(
         child: StreamBuilder<QuerySnapshot<StoreItem>>(
           stream: _usersStream,
           builder:
@@ -127,6 +129,7 @@ class _FoodScreenState extends State<FoodScreen> {
           },
         ),
       ),
+       ),
        floatingActionButton:!admin? FloatingActionButton(
           backgroundColor: Colors.black,
           onPressed: () {

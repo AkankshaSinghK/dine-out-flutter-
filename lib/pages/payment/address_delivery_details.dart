@@ -51,6 +51,7 @@ class _AddDeliverAddressState extends State<AddDeliverAddress> {
         child: ListView(
           children: [
             CustomTextField(
+          
               labText: "First name",
               controller: checkoutProvider.firstName,
             ),
@@ -59,6 +60,7 @@ class _AddDeliverAddressState extends State<AddDeliverAddress> {
                controller: checkoutProvider.lastName,
             ),
              CustomTextField(
+              keyboardType: TextInputType.number,
               labText: "Mobile Number",
                controller: checkoutProvider.mobileNo,
             ),
@@ -75,6 +77,8 @@ class _AddDeliverAddressState extends State<AddDeliverAddress> {
                controller: checkoutProvider.landmark,
             ),
              CustomTextField(
+              
+              keyboardType: TextInputType.number,
               labText: "Pincode",
                controller: checkoutProvider.pincode,
             ),
