@@ -65,6 +65,9 @@ class CheckoutProvider with ChangeNotifier {
   List<DeliveryAddressModel> deliveryAdressList = [];
   getDeliveryAddressData() async {
     print("GET DELIVERY DAtA ");
+     if(FirebaseAuth.instance.currentUser?.uid == null){
+       return;
+     }
     List<DeliveryAddressModel> newList = [];
 
     DeliveryAddressModel deliveryAddressModel;
@@ -72,7 +75,7 @@ class CheckoutProvider with ChangeNotifier {
         .collection("AddDeliverAddress")
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .get();
-        print("db exists ${_db.exists} ${_db.get('firstname')}");
+      ///  print("db exists ${_db.exists} ${_db.get('firstname')}");
     if (_db.exists) {
       print("db exist ${_db.exists}");
       deliveryAddressModel = DeliveryAddressModel(

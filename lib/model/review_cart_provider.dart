@@ -66,9 +66,9 @@ void updateReviewCartData({
 
     QuerySnapshot reviewCartValue = await FirebaseFirestore.instance
         .collection("ReviewCart")
-        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .doc(FirebaseAuth.instance.currentUser?.uid)
         .collection("YourReviewCart")
-        .get();
+        .get()  ;
     reviewCartValue.docs.forEach((element) {
       ReviewCartModel reviewCartModel = ReviewCartModel(
         cartId: element.get("cartId"),

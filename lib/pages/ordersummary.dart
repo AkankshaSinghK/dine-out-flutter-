@@ -52,6 +52,25 @@ class _OrderSummaryState extends State<OrderSummary> {
   @override
   Widget build(BuildContext context) {
     return  SafeArea(child: Scaffold(
+      //  appBar: AppBar(
+        
+            
+      //     title: Text(
+      //       //"Akanksha",
+      //       "Order Summary",
+      //       style: const TextStyle(fontSize: 16),
+      //     ),
+      //     centerTitle: false,
+      //     actions: [
+         
+      //       GestureDetector(
+      //         onTap: () {
+      //           FirebaseAuth.instance.signOut();
+      //         },
+      //         child: const Icon(Icons.logout),
+      //       ),
+      //     ],
+      //   ),
       
 
       body: 

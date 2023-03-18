@@ -1,3 +1,5 @@
+import 'package:dine_out/auth/auth_controller.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -38,7 +40,17 @@ class _CustomAppBarState extends State<CustomAppBar> {
           children: <Widget>[
           
             Text("Order Summary",
-            style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),)
+            style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+          //  actions: [
+         
+            GestureDetector(
+              onTap: () {
+                 FirebaseAuth.instance.signOut();
+                //AuthController.instance.logOut();
+              },
+              child: const Icon(Icons.logout),
+            ),
+         // ],
           ],
         ),
       ),

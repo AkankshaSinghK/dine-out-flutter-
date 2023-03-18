@@ -39,7 +39,7 @@ class _PaymentSummaryState extends State<PaymentSummary> {
             // Here you can use the model variable
             // to read and alter the state
 
-            model.getReviewCartData();
+           // model.getReviewCartData();
             // ReviewCartProvider reviewCartProvider = Provider.of(context);
             // reviewCartProvider.getReviewCartData();
             return Scaffold(
